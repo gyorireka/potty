@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - image: grafana/grafana:7.1.0
+        name: grafana
+        ports:
+        - containerPort: 3000
+          name: grafana
+
+        volumeMounts:
+          - mountPath: /etc/grafana/provisioning/datasources/data_source.yml
+            name: grafana-config
+            readOnly: true
+            subPath: data_source.yml
+      volumes:
+        - configMap:
+            name: grafana-config
+          name: grafana-config
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 3000
+  selector:
+        app: grafana
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gyr-potty-grafana
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: gyr-potty-grafana.apps.okd.codespring.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: grafana
+          servicePort: 8080
+---

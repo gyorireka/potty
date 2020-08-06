@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: potty-server
+  name: potty-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: potty-server
+  template:
+    metadata:
+      labels:
+        app: potty-server
+    spec:
+      containers:
+        - image: gyorireka/potty:firsttry
+          name: potty
+          ports:
+            - containerPort: 8123
+              name: potty
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: potty-service
+  labels:
+    app: potty-server
+spec:
+  type: ClusterIP
+  selector:
+    app: potty-server
+  ports:
+    - port: 8080
+      targetPort: 8123
+      protocol: TCP
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gyr-potty
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: gyr-potty.apps.okd.codespring.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: potty-service
+          servicePort: 8080
+---

@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: gyr-potty-prometheus
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: gyr-potty.apps.okd.codespring.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: prometheus-service
+          servicePort: 9090
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: gyr-potty
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: gyr-potty.apps.okd.codespring.ro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: potty-service
+          servicePort: 8080
+---
