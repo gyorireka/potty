@@ -15,3 +15,107 @@ data:
       type: prometheus
       access: proxy
       url: http://potty-service:8080
+  provider.yaml: |
+    apiVersion: 1
+    providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: "/etc/grafana/provisioning/dashboards"
+  dashboard.json: |
+    {
+      "type": "graph",
+      "title": "Number of screenshots",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 9
+      },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "number_of_streamings",
+          "legendFormat": "",
+         "interval": "",
+          "refId": "A"
+        }
+      ],
+      "datasource": "Prometheus",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "pluginVersion": "7.1.0",
+      "renderer": "flot",
+      "yaxes": [
+        {
+          "label": null,
+          "show": true,
+          "logBase": 1,
+          "min": null,
+          "max": null,
+          "format": "short"
+        },
+        {
+          "label": null,
+          "show": true,
+          "logBase": 1,
+          "min": null,
+          "max": null,
+          "format": "short"
+        }
+      ],
+      "xaxis": {
+        "show": true,
+        "mode": "time",
+        "name": null,
+        "values": [],
+        "buckets": null
+      },
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      },
+      "lines": true,
+      "fill": 1,
+      "linewidth": 1,
+      "dashLength": 10,
+      "spaceLength": 10,
+      "pointradius": 2,
+      "legend": {
+        "show": true,
+        "values": false,
+        "min": false,
+        "max": false,
+        "current": false,
+        "total": false,
+        "avg": false
+      },
+      "nullPointMode": "null",
+      "tooltip": {
+        "value_type": "individual",
+        "shared": true,
+        "sort": 0
+      },
+      "aliasColors": {},
+      "seriesOverrides": [],
+      "thresholds": [],
+      "timeRegions": [],
+      "fillGradient": 0,
+      "dashes": false,
+      "hiddenSeries": false,
+      "points": false,
+      "bars": false,
+      "stack": false,
+      "percentage": false,
+      "steppedLine": false,
+      "timeFrom": null,
+      "timeShift": null
+    }

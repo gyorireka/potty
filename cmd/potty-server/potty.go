@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"math/rand"
 	"net/http"
 	"os"
@@ -149,6 +150,13 @@ func main() {
 		log.Panic(err)
 	}
 	log.Hooks.Add(hook)
+
+	file, err := os.OpenFile("potty-server.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println("Could Not Open Log File : " + err.Error())
+	}
+	log.SetFormatter(&logrus.JSONFormatter{})
+	log.SetOutput(io.MultiWriter(file, os.Stdout))
 
 	handleRequests()
 }
