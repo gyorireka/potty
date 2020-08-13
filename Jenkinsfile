@@ -32,7 +32,7 @@ pipeline {
                 label 'potty-go-oc-docker'
             }
             steps {
-                bat 'oc rollout latest deployment.apps/potty-server'
+                bat 'oc rollout latest dc/potty-server'
             }
         }
     }
