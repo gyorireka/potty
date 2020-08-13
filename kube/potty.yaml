@@ -11,7 +11,7 @@ spec:
         app: potty-server
     spec:
       containers:
-        - image: gyorireka/potty:elastic
+        - image: gyorireka/potty:latest
           name: potty
           ports:
             - containerPort: 8123
