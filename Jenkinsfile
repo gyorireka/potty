@@ -8,6 +8,7 @@ pipeline {
             }
             steps {
                 bat 'go version'
+                bat 'echo test polling'
             }
         }
     }
