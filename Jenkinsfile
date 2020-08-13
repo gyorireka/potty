@@ -7,7 +7,7 @@ pipeline {
                 label 'potty-go'
             }
             steps {
-                sh 'ls'
+                bat 'go version'
             }
         }
     }
