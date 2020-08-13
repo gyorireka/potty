@@ -33,6 +33,7 @@ pipeline {
             }
             steps {
                 bat 'oc apply -f .\\kube\\potty.yaml'
+                bat 'oc rollout restart deployment.apps/potty-server'
             }
         }
     }
