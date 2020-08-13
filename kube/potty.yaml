@@ -17,6 +17,7 @@ spec:
       containers:
         - image: gyorireka/potty:latest
           name: potty
+          imagePullPolicy: Always
           ports:
             - containerPort: 8123
               name: potty
