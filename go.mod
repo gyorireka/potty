@@ -12,9 +12,10 @@ require (
 	github.com/go-openapi/swag v0.19.9
 	github.com/gorilla/mux v1.7.4
 	github.com/jessevdk/go-flags v1.4.0
-	github.com/olivere/elastic/v7 v7.0.19 // indirect
+	github.com/olivere/elastic/v7 v7.0.19
 	github.com/openfaas/faas-provider v0.15.1 // indirect
 	github.com/prometheus/client_golang v1.7.1
+	github.com/sirupsen/logrus v1.4.2
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381
-	gopkg.in/sohlich/elogrus.v7 v7.0.0 // indirect
+	gopkg.in/sohlich/elogrus.v7 v7.0.0
 )

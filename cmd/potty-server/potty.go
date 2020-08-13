@@ -137,6 +137,7 @@ func main() {
 		Camera{Name: "Bagoly", Status: true, Screenshot: "bagoly.txt", UsesMobileNetwork: true},
 		Camera{Name: "Cinke", Status: false, Screenshot: "cinke.txt", UsesMobileNetwork: false},
 		Camera{Name: "Rozsdafarku", Status: true, Screenshot: "rozsdafarku", UsesMobileNetwork: false},
+		Camera{Name: "Jenkins1", Status: true, Screenshot: "ehe", UsesMobileNetwork: false},
 	}
 
 	prometheus.Register(StreamingCount)

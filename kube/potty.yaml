@@ -1,14 +1,10 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
 metadata:
   labels:
     app: potty-server
   name: potty-server
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: potty-server
   template:
     metadata:
       labels:
@@ -20,6 +16,10 @@ spec:
           ports:
             - containerPort: 8123
               name: potty
+  replicas: 1
+  triggers:
+    - type: "ConfigChange"
+  
 ---
 apiVersion: v1
 kind: Service
