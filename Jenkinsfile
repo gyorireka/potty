@@ -7,7 +7,7 @@ pipeline {
                 label 'potty-go'
             }
             steps {
-                bat 'go build cmd/potty-server'
+                bat 'go build .\\cmd\\potty-server'
             }
         }
         stage('Run tests') {
@@ -15,7 +15,7 @@ pipeline {
                 label 'potty-go'
             }
             steps {
-                bat 'go test cmd/potty-server'
+                bat 'go build .\\cmd\\potty-server'
             }
         }
         stage('Build docker image') {
