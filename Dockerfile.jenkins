@@ -15,8 +15,8 @@ USER jenkins
 COPY --from=gosrc ${GO_BASE_PATH} ${GO_BASE_PATH}
 COPY --from=gosrc /go ${HOME}
 
-ENV GOPATH=${HOME}
+ENV GOPATH=/home/jenkins/agent
 ENV PATH="${GOPATH}/bin:${GO_BASE_PATH}/bin:${PATH}"
-ENV GOCACHE=/home/jenkins/.cache
+ENV GOCACHE=/home/jenkins/agent/.cache
 
 #CMD java -jar /usr/share/jenkins/agent.jar -jnlpUrl http://jenkins.apps.okd.codespring.ro/computer/gyeka-local-slave/slave-agent.jnlp -secret 4a2d7a8882b5787060b3b686c7cc6cd9f3c037e0986df81c221bcbfd0e74b37e -workDir "/home/jenkins/agent"
