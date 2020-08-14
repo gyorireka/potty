@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build potty-server') {
             agent {
-                label 'potty-go'
+                label 'potty-go-oc-docker'
             }
             steps {
                 bat 'go build .\\cmd\\potty-server'
@@ -12,10 +12,10 @@ pipeline {
         }
         stage('Run tests') {
             agent {
-                label 'potty-go'
+                label 'potty-go-oc-docker'
             }
             steps {
-                bat 'go build .\\cmd\\potty-server'
+                bat 'go test .\\cmd\\potty-server'
             }
         }
         stage('Build docker image') {
